@@ -40,11 +40,10 @@ int print_notes(int fd, int uid, char *searchstring){
   char byte=0, note_buffer[100];
 
   note_length = find_user_note(fd,uid);
-  printf("\n\n%d\n\n",note_length);
   if(note_length == -1) //If end of file reached
     return 0;//return 0
 
-  read(fd, note_buffer, note_length); //read note data
+  read(fd, note_buffer, note_length+1); //read note data
   note_buffer[note_length] = 0;       //Terminate the string
   
   if(search_note(note_buffer, searchstring)) //If search string found
